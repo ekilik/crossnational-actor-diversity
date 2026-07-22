@@ -1,0 +1,24 @@
+# Generated output — rebuilt by rerunning notebooks 02-05
+output/
+
+# No data is distributed with this repository (available on request; see
+# data/README.md). Ignore everything under data/ except its README so that
+# analysis inputs, results, actor annotations and reference files can never be
+# committed by accident.
+data/*
+!data/README.md
+
+# Notebook and Python cruft
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.virtual_documents/
+
+# Environments
+.venv/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
