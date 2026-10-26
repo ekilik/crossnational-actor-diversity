@@ -18,33 +18,45 @@ purposes. Requests are handled subject to the licences above.
 
 ## Expected layout
 
-To run the pipeline, populate `data/` as follows. The code resolves these paths through
-`3_analysis/helpers.py` (analysis) and the `DATA_DIR` constants in `1_annotation/scripts/`
-(annotation).
+`3_analysis/helpers.py` resolves its paths from the file's own location, so the analysis
+stage reads and writes **at the repository root**, not inside `data/`. Populate the tree as
+follows; all three generated folders are git-ignored.
 
 ```
-data/
-├── analysis/          # article-level inputs to notebooks 02-05 (output of notebook 01)
-│   ├── df_actors_socialdiv_analysis_clean.csv
-│   └── df_actors_politicaldiv_analysis_clean.csv
-├── diversity/         # weekly Dz scores (output of notebook 02)
-├── actor_annotations/ # enriched actor files (output of the enrichment stage)
-├── reference/         # party/politician reference files
-│   ├── {cc}_parties_reference.xlsx
-│   ├── {cc}_politicians_reference.xlsx
-│   ├── raw/           # election rosters (input to prepare_politicians_reference.py)
-│   └── intermediate/  # pre-matched actor lists
-└── raw_annotations/   # stage-2 LLM output, keyed to article text
-    ├── immigration/
-    └── inflation/
+<repo root>/
+├── analysis_data/     # inputs to notebook 01, and its cleaned outputs
+│   ├── *_df*.csv                                  # per-country topic files (with body text)
+│   ├── df_actors_socialdiv_analysis.csv            # article-level, one row per article
+│   ├── df_actors_politicaldiv_analysis.csv         # actor-level, one row per political actor
+│   ├── df_actors_socialdiv_analysis_clean.csv      # written by notebook 01
+│   └── df_actors_politicaldiv_analysis_clean.csv   # written by notebook 01
+├── model_dfs/         # weekly Dz scores, written by notebook 02 and read by 03 and 04
+├── results/           # tables (docx + csv) and figures, written by 03 and 04
+└── data/              # annotation-stage inputs only (stage 1); see below
+    ├── actor_annotations/ # enriched actor files (output of the enrichment stage)
+    ├── reference/         # party/politician reference files
+    │   ├── {cc}_parties_reference.xlsx
+    │   ├── {cc}_politicians_reference.xlsx
+    │   ├── raw/           # election rosters (input to prepare_politicians_reference.py)
+    │   └── intermediate/  # pre-matched actor lists
+    └── raw_annotations/   # stage-2 LLM output, keyed to article text
+        ├── immigration/
+        └── inflation/
 ```
+
+Notebook `02` writes the aggregated diversity scores to `model_dfs/`. These files are the
+analysis-ready grain: pooled actor counts and *D*z per outlet-week-issue, with no article
+text, headlines or identifiers. They are the smallest set sufficient to reproduce every
+table and figure in the paper from notebook `03` onward, and are included in the
+on-request release.
 
 Country codes: `be` Belgium · `ir` Ireland · `nl` Netherlands · `tr` Turkey · `uk` United Kingdom
 
 ## Input format for stage 1
 
-To run stage 1 (`1_annotation/`) or notebook `01_clean_corpus.ipynb`, supply your own
-article data as a semicolon-separated CSV with at least:
+All project CSVs are semicolon-separated (`helpers.CSV_SEP`). To run stage 1
+(`1_annotation/`) or notebook `01_clean_corpus.ipynb`, supply your own article data as a
+semicolon-separated CSV with at least:
 
 | Column | Description |
 |---|---|

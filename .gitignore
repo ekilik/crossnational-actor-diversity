@@ -1,5 +1,8 @@
-# Generated output — rebuilt by rerunning notebooks 02-05
+# Generated output — rebuilt by rerunning notebooks 02-04
+results/
 output/
+# Supplementary figures: produced by notebook 04 but not reported in the paper
+**/supplementary/
 
 # No data is distributed with this repository (available on request; see
 # data/README.md). Ignore everything under data/ except its README so that
@@ -7,6 +10,13 @@ output/
 # committed by accident.
 data/*
 !data/README.md
+
+# helpers.py resolves its paths relative to the repository root (see
+# data/README.md), so the analysis inputs and the aggregated diversity scores
+# land in these two folders rather than under data/. Ignored by name so that
+# running the pipeline can never stage study data.
+analysis_data/
+model_dfs/
 
 # Notebook and Python cruft
 .ipynb_checkpoints/
