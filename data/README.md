@@ -11,10 +11,24 @@ Netherlands, Turkey, the United Kingdom) and Belgapress (Belgium), and by direct
 collection from the public-service outlets' websites. Redistribution of the article text
 is not permitted.
 
-The data derived from that corpus (LLM and human annotations, actor-level enriched files,
-and the aggregated weekly diversity scores), together with the party/politician reference
-files, is available **on reasonable request from the authors** for non-commercial research
-purposes. Requests are handled subject to the licences above.
+The article-level annotation data are deposited in the Harvard Dataverse and will be
+publicly released on publication:
+
+| File | Contents |
+|---|---|
+| `df_actors_socialdiv_analysis_clean.csv` | 40,656 articles, 149,752 actors; counts per societal function |
+| `df_actors_politicaldiv_analysis_clean.csv` | 20,863 rows over 14,295 articles; counts per party |
+| `df_actors_socialdiv_analysis.csv` | as above, before near-duplicate removal |
+| `df_actors_politicaldiv_analysis.csv` | as above, before near-duplicate removal |
+
+The `_clean` files carry article metadata and derived actor counts, with no article text.
+They are the minimal set sufficient to reproduce the paper: notebook `02` regenerates
+`model_dfs/` from them, after which `03` and `04` produce every reported table and figure.
+The manual annotation codebooks are deposited alongside them.
+
+The party and politician reference files used in stage 1, and the actor-level enriched
+files, are available **on reasonable request from the authors** for non-commercial
+research purposes, subject to the licences above.
 
 ## Expected layout
 
@@ -46,9 +60,8 @@ follows; all three generated folders are git-ignored.
 
 Notebook `02` writes the aggregated diversity scores to `model_dfs/`. These files are the
 analysis-ready grain: pooled actor counts and *D*z per outlet-week-issue, with no article
-text, headlines or identifiers. They are the smallest set sufficient to reproduce every
-table and figure in the paper from notebook `03` onward, and are included in the
-on-request release.
+text, headlines or identifiers. They are regenerated from the two `_clean` files in
+the deposit, so they are not deposited separately.
 
 Country codes: `be` Belgium · `ir` Ireland · `nl` Netherlands · `tr` Turkey · `uk` United Kingdom
 

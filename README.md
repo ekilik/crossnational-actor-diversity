@@ -1,6 +1,6 @@
 # Do Market and Political Risks Narrow the Diversity of Voices? A Comparative Analysis of Actor Representation in the News Prior to Elections
 
-This repository contains the code and aggregated data for a comparative content analysis of **actor diversity** in election news across five countries: Belgium (Flanders), Ireland, the Netherlands, Turkey and the United Kingdom.
+This repository contains the code for a comparative content analysis of **actor diversity** in election news across five countries: Belgium (Flanders), Ireland, the Netherlands, Turkey and the United Kingdom.
 
 ## Abstract
 
@@ -82,10 +82,16 @@ Appendix B.
 
 **No data is distributed with this repository.** The article corpus was retrieved under
 licence from NexisUni and Belgapress and by direct collection from outlet websites, and
-its redistribution is not permitted. The data derived from it (annotations, diversity
-scores, reference files) is available **on request from the authors** only for
-research purposes. The expected inputs, their formats, and the reference sources are
-documented in [`data/README.md`](data/README.md).
+redistribution of the article text is not permitted.
+
+The article-level annotation data derived from it are deposited in the Harvard Dataverse
+and will be publicly released on publication; the deposit is made available to reviewers
+through the journal. Those files carry article metadata and the derived actor counts, with
+no article text, and every result reported in the article and its appendices is
+reproducible from them. The party and politician reference files used in stage 1 remain
+available **on request from the authors** for research purposes. The expected inputs,
+their formats, and the reference sources are documented in
+[`data/README.md`](data/README.md).
 
 ## Environment
 
@@ -115,7 +121,7 @@ English, Dutch and Turkish; see `data/README.md`.
 
 > [Author(s)]. (forthcoming). *Do Market and Political Risks Narrow the Diversity of Voices? A Comparative Analysis of Actor Representation in the News Prior to Elections.*
 
-A DOI will be added on publication.
+DOIs for the article and for the data deposit will be added on publication.
 
 ## Acknowledgements
 
